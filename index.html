@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Scene Navigation</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Importing custom font */
+    @font-face {
+      font-family: 'Silkscreen';
+      src: url('./fonts/Silkscreen-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar with transparent background -->
+  <div class="navbar">
+    <ul>
+      <li><a href="#" data-target="0">Home</a></li>
+      <li><a href="#" data-target="1">About</a></li>
+      <li><a href="#" data-target="2">Themes</a></li>
+      <li><a href="#" data-target="3">Itinerary</a></li>
+      <li><a href="#" data-target="4">Meet the Team</a></li>
+      <li><a href="#" data-target="5">FAQ</a></li>
+    </ul>
+  </div>
+
+  <!-- Logo Animation -->
+  <div class="logo-animation" id="logoAnimation">
+    <div class="logo-text">
+      <div class="logo-row">
+        <img src="./images/c.png" class="logo-img" alt="C">
+        <span class="logo-aldwell">ALDWELL</span>
+      </div>
+      <div class="logo-hacks">HACKS</div>
+    </div>
+  </div>
+  
+  
+  
+  <canvas id="three-canvas"></canvas>
+  
+  <script src="main.js" type="module"></script>
+</body>
+</html>
