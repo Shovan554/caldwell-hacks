@@ -115,7 +115,7 @@ canvas {
 .logo-row {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 5px; /* Reduced gap between logo image and ALDWELL text */
   opacity: 0; /* Initially hidden */
   animation: slideInLeft 1s ease-out forwards;
   animation-delay: 1.6s;
@@ -124,28 +124,71 @@ canvas {
 .logo-img {
   width: 500px;
   height: auto;
-  margin-top: -60px;
-  margin-left: -80px;
+  margin-top: 50px;
+  margin-left: -130px;
   opacity: 0; /* Initially hidden */
   animation: slideInLeft 1s ease-out forwards;
-  animation-delay: 0s;
+  animation-delay: 1.2s;
 }
 
 .logo-aldwell {
   font-family: 'Pixel', sans-serif;
-  font-size: 90px;
+  font-size: 100px;
   font-weight: bold;
-  margin-left: -200px;
-  opacity: 0; /* Initially hidden */
-  animation: slideInLeft 1s ease-out forwards;
+  margin-left: -170px; /* Reduced margin between ALDWELL and HACKS */
+  opacity: 1; /* Initially hidden */
+  animation: slideInLeft 0.5s ease-out forwards;
   animation-delay: 0s;
+  margin-top:50px;
+}
+
+.logo-hacks-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: -80px;
+  margin-left:200px;
 }
 
 .logo-hacks {
   font-family: 'Pixel', sans-serif;
-  font-size: 70px;
-  margin-top: -20px;
-  opacity: 0; /* Initially hidden */
-  animation: slideInRight 1s ease-out forwards;
-  animation-delay: 0s; /* Slightly delayed for staggered effect */
+  font-size: 100px;
+  color: #e51010; /* Yellow color for HACKS */
+  opacity: 0;
+  animation: slideInLeft 0.5s ease-out forwards;
+  animation-delay: 0s;
+  margin-left:-100px;
+}
+
+/* Register Button Styling */
+.register-button {
+  font-family: 'Silkscreen', sans-serif;
+  font-size: 20px;
+  color: #FFFFFF;
+  background-color: #273771;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  opacity: 0;
+  animation: slideInRight 0.5s ease-out forwards;
+  animation-delay: 1s;
+  transition: background-color 0.3s ease;
+  margin-left: 10px; /* Add slight spacing from "HACKS" */
+}
+
+.register-button:hover {
+  background-color: #1d2951;
+}
+
+.register-button a {
+  color: inherit;
+  text-decoration: none;
+}
+.date{
+  font-size: 30px;
+}
+.location{
+  color:yellow;
+  font-size:30px;
 }
