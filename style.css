@@ -675,7 +675,7 @@ canvas {
   text-align: center;
   color: #FFFFFF;
   width: 100%;
-  top: 20%; /* Vertically center */
+  top: 10%; /* Vertically center */
   left: 0%;
   transform: translate(-50%, -50%); /* Center horizontally and vertically */
   z-index: 10;
@@ -683,9 +683,8 @@ canvas {
 }
 
 .seventh-scene-logo {
-  max-width: 1000px; /* Ensure the logo doesn't overflow */
-  height: auto;
-  max-height: 1000px; 
+  max-width: 700px; 
+  height: 700px;
 }
 
 /* Slide-in animation from top */
