@@ -653,8 +653,8 @@ canvas {
   text-align: center;
   background: #ff0000; /* Red background for emphasis */
   padding: 30px;
-  border-radius: 10px;
-  max-width: 80%;
+  border-radius: 50px;
+  max-width: 100%;
 }
 
 .warning-message h2 {
