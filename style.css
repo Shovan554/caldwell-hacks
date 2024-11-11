@@ -666,3 +666,35 @@ canvas {
   font-size: 1.2em;
 }
 
+
+
+/* Seventh Scene Styling */
+.seventh-scene-content {
+  position: absolute;
+  display: none; /* Initially hidden; will show when transitioning to seventh scene */
+  text-align: center;
+  color: #FFFFFF;
+  width: 100%;
+  top: 20%; /* Vertically center */
+  left: 0%;
+  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  z-index: 10;
+  animation: slideInTop 1.5s ease-out forwards; /* Apply slideInTop transition */
+}
+
+.seventh-scene-logo {
+  max-width: 1000px; /* Ensure the logo doesn't overflow */
+  height: auto;
+  max-height: 1000px; 
+}
+
+/* Slide-in animation from top */
+
+.follow-us-text{
+  color: yellow;
+}
+
+
+.instagram-logo{
+  width:20px
+}

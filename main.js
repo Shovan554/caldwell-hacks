@@ -10,6 +10,7 @@ const thirdSceneContent = document.getElementById('thirdSceneContent');
 const fourthSceneContent = document.getElementById('fourthSceneContent');
 const fifthSceneContent = document.getElementById('fifthSceneContent');
 const sixthSceneContent = document.getElementById('sixthSceneContent');
+const seventhSceneContent = document.getElementById('seventhSceneContent');
 const scene = new THREE.Scene();
 
 // Array of scene positions and rotations
@@ -66,10 +67,11 @@ camera.position.set(initialScene.position.x, initialScene.position.y, initialSce
 camera.rotation.set(initialScene.rotation.x, initialScene.rotation.y, initialScene.rotation.z);
 
 // Initially hiding the  content
-sixthSceneContent.style.display = "none"
-fifthSceneContent.style.display = "none"
-fourthSceneContent.style.display = "none"
-thirdSceneContent.style.display = "none"
+seventhSceneContent.style.display = "none";
+sixthSceneContent.style.display = "none";
+fifthSceneContent.style.display = "none";
+fourthSceneContent.style.display = "none";
+thirdSceneContent.style.display = "none";
 secondSceneContent.style.display = "none";
 logoAnimation.style.display = "block";
 
@@ -106,6 +108,7 @@ function updateSceneVisibility() {
   fourthSceneContent.style.display = currentScene === 3? "block" : "none";
   fifthSceneContent.style.display = currentScene === 4 ? "block" : "none";
   sixthSceneContent.style.display = currentScene === 5 ? "block" : "none";
+  seventhSceneContent.style.display = currentScene ===6? "block" :"none";
 }
 
 // Smooth transition function
