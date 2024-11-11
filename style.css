@@ -297,6 +297,40 @@ canvas {
 .footer-left a{
   color:#FFFFFF
 }
+@media (max-width: 768px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .footer-logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+  }
+
+  .footer-left,
+  .footer-right {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .footer-left,
+  .footer-right,
+  .footer-center {
+    width: 100%;
+  }
+
+  .footer-left a,
+  .footer-right a {
+    display: block;
+    margin: 5px 0;
+  }
+}
 
 .third-scene-content {
   position: absolute;
