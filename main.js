@@ -160,3 +160,12 @@ window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 });
+// Function to detect if the device is mobile
+function isMobileDevice() {
+  return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
+// Show mobile warning if on a mobile device
+if (isMobileDevice()) {
+  document.getElementById('mobileWarning').style.display = 'flex';
+}
