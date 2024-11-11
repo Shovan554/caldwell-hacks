@@ -1,10 +1,15 @@
-// main.js
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import gsap from 'gsap';
 
+
 const canvas = document.getElementById('three-canvas');
 const logoAnimation = document.getElementById('logoAnimation');
+const secondSceneContent = document.getElementById('secondSceneContent'); 
+const thirdSceneContent = document.getElementById('thirdSceneContent');
+const fourthSceneContent = document.getElementById('fourthSceneContent');
+const fifthSceneContent = document.getElementById('fifthSceneContent');
+const sixthSceneContent = document.getElementById('sixthSceneContent');
 const scene = new THREE.Scene();
 
 // Array of scene positions and rotations
@@ -59,7 +64,14 @@ let isTransitioning = false;
 const initialScene = scenes[0];
 camera.position.set(initialScene.position.x, initialScene.position.y, initialScene.position.z);
 camera.rotation.set(initialScene.rotation.x, initialScene.rotation.y, initialScene.rotation.z);
-logoAnimation.style.display = "block"; // Show the logo in the initial scene
+
+// Initially hiding the  content
+sixthSceneContent.style.display = "none"
+fifthSceneContent.style.display = "none"
+fourthSceneContent.style.display = "none"
+thirdSceneContent.style.display = "none"
+secondSceneContent.style.display = "none";
+logoAnimation.style.display = "block";
 
 // Transition function
 function transitionToScene(targetScene, fastTransition = false) {
@@ -87,8 +99,13 @@ function transitionToScene(targetScene, fastTransition = false) {
 }
 
 // Update visibility based on scene
-function updateLogoVisibility() {
+function updateSceneVisibility() {
   logoAnimation.style.display = currentScene === 0 ? "block" : "none";
+  secondSceneContent.style.display = currentScene === 1 ? "block" : "none"; //second scene 
+  thirdSceneContent.style.display = currentScene === 2 ? "block" : "none";//third scene
+  fourthSceneContent.style.display = currentScene === 3? "block" : "none";
+  fifthSceneContent.style.display = currentScene === 4 ? "block" : "none";
+  sixthSceneContent.style.display = currentScene === 5 ? "block" : "none";
 }
 
 // Smooth transition function
@@ -102,7 +119,7 @@ function smoothTransitionToTarget(targetIndex) {
       return;
     }
     transitionToScene(scenes[currentScene], true);
-    updateLogoVisibility();
+    updateSceneVisibility();
     setTimeout(stepThroughScenes, 500);
   };
   stepThroughScenes();
@@ -127,7 +144,7 @@ window.addEventListener('wheel', (event) => {
     currentScene--;
   }
   transitionToScene(scenes[currentScene]);
-  updateLogoVisibility();
+  updateSceneVisibility(); // Update visibility when scrolling
 });
 
 // Animate and render scene

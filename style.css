@@ -88,6 +88,16 @@ canvas {
     opacity: 1;
   }
 }
+@keyframes slideInTop {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
 /* Logo Animation Styling */
 .logo-animation {
@@ -191,4 +201,435 @@ canvas {
 .location{
   color:yellow;
   font-size:30px;
+}
+
+/* Footer Styling */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  padding: 10px 20px;
+  z-index: 1000;
+}
+
+.footer-text {
+  color: #FFFFFF;
+  font-family: 'Silkscreen', sans-serif;
+}
+
+.footer .footer-center {
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.footer .footer-right {
+  color: #FFFFFF;
+  font-size: 18px;
+  text-align: right;
+}
+
+.footer .footer-left {
+  color: #FFFFFF;
+  font-size: 18px;
+  text-align: left;
+}
+
+/* Second Scene Content */
+.second-scene-content {
+  position: absolute;
+  top: 120px; /* Below the navbar */
+  left: 20px; /* Aligned to the left */
+  color: #FFFFFF;
+  z-index: 10;
+  animation: slideInTop 1.9s ease-out forwards;
+  animation-delay: 0s;
+  transition: background-color 0.3s ease;
+ 
+  
+
+}
+
+
+.second-scene-title {
+  font-family: 'Pixel', sans-serif;
+  margin-top:100px;
+  font-size: 60px;
+  font-weight: bold;
+  text-align: center;
+  color:yellow;
+
+}
+
+.second-scene-description {
+  font-size: 25px;
+  margin-top: 10px;
+  font-weight: normal;
+  margin-right:20px;
+
+}
+
+
+.footer-logo{
+  width: 180px;
+  height:180px;
+  margin-bottom: -80px;
+}
+.footer-right{
+  margin-top:80px;
+  margin-right:20px;
+
+}
+.footer-left{
+  margin-top:80px;
+}
+
+.second-scene-description strong{
+  color:red;
+}
+
+
+.footer-left a{
+  color:#FFFFFF
+}
+
+.third-scene-content {
+  position: absolute;
+  top: 50px; /* Below the navbar */
+  left: 20px; /* Aligned to the left */
+  color: #FFFFFF;
+  z-index: 10;
+  animation: slideInLeft 1.9s ease-out forwards;
+  animation-delay: 0s;
+  transition: background-color 0.3s ease;
+  margin-left:200px;
+
+}
+/* Third Scene Styling */
+.third-scene-content {
+  display: none; /* Initially hidden; will show when transitioning to third scene */
+  text-align: center;
+  color: #FFFFFF;
+  padding: 50px 20px;
+  margin-right:250px;
+}
+
+.themes-title {
+  font-family: 'Pixel', sans-serif;
+  font-size: 60px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  animation: fadeIn 1s ease-out forwards;
+
+}
+
+.theme-box {
+  display: inline-block;
+  width: 30%;
+  background-color: rgba(39, 55, 113, 0.6); /* Semi-transparent background */
+  margin: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.theme-box:hover {
+  transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+.theme-title {
+  font-family: 'font2', sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color:red;
+}
+
+.theme-description {
+  font-family: 'Silkscreen', sans-serif;
+  font-size: 18px;
+  color: #FFFFFF;
+  line-height: 1.6;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* Universal styles */
+@font-face {
+  font-family: 'Silkscreen';
+  src: url('./fonts/Silkscreen-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pixel';
+  src: url('./fonts/font5.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'font2';
+  src: url('./fonts/font2.ttf') format('truetype');
+  font-weight: bold;
+}
+
+* {
+  font-family: 'Silkscreen', sans-serif;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Slide-in keyframes */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInTop {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Centered Titles for All Scenes */
+.scene-title {
+  font-family: 'Pixel', sans-serif;
+  font-size: 60px;
+  font-weight: bold;
+  text-align: center;
+  color: #FFFFFF;
+  margin-bottom: 30px;
+}
+
+/* Fourth Scene Styling */
+.fourth-scene-content {
+  position: absolute;
+  display: none; /* Initially hidden; will show when transitioning to fourth scene */
+  text-align: center;
+  color: #FFFFFF;
+  padding: 50px 20px;
+  width: 100%;
+  top: 120px; /* Adjust this value to fine-tune position */
+  animation: slideInTop 1.9s ease-out forwards;
+  animation-delay: 0s;
+  transition: background-color 0.3s ease;
+}
+
+.fourth-scene-title {
+  font-family: 'Pixel', sans-serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: #FFFFFF;
+  animation: slideInTop 1.9s ease-out forwards;
+  animation-delay: 0s;
+}
+
+/* Fifth Scene Styling */
+.fifth-scene-content {
+  position: absolute;
+  display: none; /* Initially hidden; will show when transitioning to fifth scene */
+  text-align: center;
+  color: #e9ffec;
+  padding: 50px 20px;
+  width: 100%;
+  top: 5px; /* Adjust this value to fine-tune position */
+  margin-right: 200px;
+  animation: slideInRight 1.9s ease-out forwards;
+  animation-delay: 0s;
+  transition: background-color 0.3s ease;
+}
+
+.fifth-scene-title {
+  font-family: 'Pixel', sans-serif;
+  font-size: 60px;
+  font-weight: bold;
+ 
+  margin-bottom: 30px;
+}
+
+.fifth-scene-content h2{
+  color:yellow;
+  font-size:50px;
+}
+/* Use CSS Grid for team cards */
+.team-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 10px;
+  justify-items: center; /* Centers the cards within each grid cell */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Team Card Styling */
+.team-card {
+  background-color: hsl(0, 0%, 0%);
+  border-radius: 10px;
+  width: 190px; /* Set the width for the cards */
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+  transform: scale(1.2);
+}
+
+.team-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
+.team-member-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-top: 10px;
+}
+
+/* Mobile-responsive design */
+@media (max-width: 768px) {
+  .team-cards {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on smaller screens */
+  }
+}
+
+
+/* Sixth Scene Styling */
+.sixth-scene-content {
+  position: absolute;
+  display: none; /* Initially hidden; will show when transitioning to sixth scene */
+  text-align: center;
+  color: #FFFFFF;
+  padding: 50px 20px;
+  width: 100%;
+  top: 50px; /* Adjust this value to fine-tune position */
+  animation: slideInLeft 1.9s ease-out forwards;
+  animation-delay: 0s;
+  transition: background-color 0.3s ease;
+}
+
+.sixth-scene-title {
+  font-family: 'Pixel', sans-serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-bottom: 30px;
+}
+
+/* Scrollable FAQ container */
+.faq-container {
+  position: relative;
+  max-height: 600px; /* Height of the scrollable box */
+  width: 70%; /* Adjust the width as needed */
+  margin: 0 auto;
+  padding: 10px;
+  overflow-y: scroll; /* Enable vertical scrolling */
+  border: 2px solid #fff; /* Border around the FAQ */
+  border-radius: 10px;
+  background :transparent /* Transparent background */
+  
+}
+
+.faq-container:hover {
+  transform: scale(1.01);
+}
+
+.faq-container::-webkit-scrollbar {
+  width: 10px; /* Scrollbar width */
+ 
+  
+}
+
+.faq-container::-webkit-scrollbar-thumb {
+  background: #a8ff05; 
+  border-radius: 10px;
+}
+
+.faq-container::-webkit-scrollbar-track {
+  background: transparent;
+  
+}
+
+.faq-item {
+  background:transparent;
+  padding: 0px;
+  margin-bottom: 0px;
+  border-radius: 10px;
+}
+
+.faq-question {
+  font-family: 'Pixel', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-bottom: 10px;
+}
+
+.faq-answer {
+  font-family: 'Silkscreen', sans-serif;
+  font-size: 18px;
+  color: #a8ff05;
+  line-height: 1.6;
+}
+
+/* Mobile-responsive design for FAQ */
+@media (max-width: 768px) {
+  .faq-container {
+    width: 90%; /* Adjust the width for smaller screens */
+  }
+}
+
+
+@media (max-width: 768px) {
+  .team-card {
+    width: 80%; /* Stack team cards on mobile */
+  }
+
+  .fifth-scene-content, .sixth-scene-content {
+    padding: 20px 10px;
+  }
+
+  .theme-box {
+    width: 80%; /* Stack themes on mobile */
+  }
 }
