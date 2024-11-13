@@ -678,7 +678,7 @@ canvas {
   display: none; /* Hidden by default */
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 1001;
   text-align: center;
 }
 
@@ -687,6 +687,7 @@ canvas {
   padding: 30px;
   border-radius: 50px;
   max-width: 100%;
+
 }
 
 .warning-message h2 {
