@@ -2,7 +2,6 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import gsap from 'gsap';
 
-
 const canvas = document.getElementById('three-canvas');
 const logoAnimation = document.getElementById('logoAnimation');
 const secondSceneContent = document.getElementById('secondSceneContent'); 
@@ -66,7 +65,7 @@ const initialScene = scenes[0];
 camera.position.set(initialScene.position.x, initialScene.position.y, initialScene.position.z);
 camera.rotation.set(initialScene.rotation.x, initialScene.rotation.y, initialScene.rotation.z);
 
-// Initially hiding the  content
+// Initially hiding the content
 seventhSceneContent.style.display = "none";
 sixthSceneContent.style.display = "none";
 fifthSceneContent.style.display = "none";
@@ -163,12 +162,38 @@ window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 });
+
 // Function to detect if the device is mobile
 function isMobileDevice() {
   return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 }
 
-// Show mobile warning if on a mobile device
-if (isMobileDevice()) {
-  document.getElementById('mobileWarning').style.display = 'flex';
+// Resize the scene for mobile devices
+function adjustForMobile() {
+  if (isMobileDevice()) {
+    // Adjust the camera and scene properties for mobile devices
+    camera.aspect = window.innerWidth / window.innerHeight;
+    if (camera.aspect > 1) {
+      camera.position.z = 600 / camera.aspect;  // Adjusting the Z position for mobile
+    } else {
+      camera.position.z = 600; // For portrait mode
+    }
+    camera.updateProjectionMatrix();
+
+    // Reduce text size and center for mobile
+    document.querySelectorAll('.scene-title').forEach(title => {
+      title.style.fontSize = "30px";
+      title.style.textAlign = "center";
+    });
+  }
 }
+
+// Call adjustForMobile on window resize or initial load
+adjustForMobile();
+window.addEventListener('resize', adjustForMobile);
+const hamburger = document.getElementById('hamburger');
+const navbarMenu = document.getElementById('navbarMenu');
+
+hamburger.addEventListener('click', () => {
+  navbarMenu.classList.toggle('show');
+});
