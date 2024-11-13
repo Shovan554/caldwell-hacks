@@ -667,9 +667,7 @@ canvas {
   .theme-box {
     width: 80%; /* Stack themes on mobile */
   }
-}
-/* Mobile Warning Screen */
-.mobile-warning {
+}.mobile-warning {
   position: fixed;
   top: 0;
   left: 0;
@@ -681,10 +679,10 @@ canvas {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  text-align: center;
 }
 
 .warning-message {
-  text-align: center;
   background: #ff0000; /* Red background for emphasis */
   padding: 30px;
   border-radius: 50px;
@@ -700,6 +698,12 @@ canvas {
   font-size: 1.2em;
 }
 
+/* Mobile View Adjustments */
+@media (max-width: 768px) {
+  .mobile-warning {
+    display: flex;
+  }
+}
 
 
 /* Seventh Scene Styling */
