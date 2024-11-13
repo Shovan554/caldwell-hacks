@@ -168,7 +168,7 @@ canvas {
 .logo-img {
   width: 500px;
   height: auto;
-  margin-top: 50px;
+  margin-top: 100px;
   margin-left: -130px;
   opacity: 0; /* Initially hidden */
   animation: slideInLeft 1s ease-out forwards;
@@ -183,7 +183,7 @@ canvas {
   opacity: 1; /* Initially hidden */
   animation: slideInLeft 0.5s ease-out forwards;
   animation-delay: 0s;
-  margin-top:50px;
+  margin-top:100px;
 }
 
 .logo-hacks-container {
@@ -272,6 +272,12 @@ canvas {
   color: #FFFFFF;
   font-size: 18px;
   text-align: left;
+}
+
+.mouse-icon-image{
+  padding-top:5px;
+  width:40px;
+  height:auto
 }
 
 /* Second Scene Content */
@@ -588,20 +594,21 @@ canvas {
   font-size: 60px;
   font-weight: bold;
   color: #FFFFFF;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
 
 /* Scrollable FAQ container */
 .faq-container {
   position: relative;
   max-height: 600px; /* Height of the scrollable box */
-  width: 70%; /* Adjust the width as needed */
+  width: 60%; /* Adjust the width as needed */
   margin: 0 auto;
   padding: 10px;
   overflow-y: scroll; /* Enable vertical scrolling */
   border: 2px solid #fff; /* Border around the FAQ */
   border-radius: 10px;
-  background :transparent /* Transparent background */
+  background :transparent;
+  margin-bottom :30px;
   
 }
 
@@ -705,6 +712,7 @@ canvas {
     display: flex;
   }
 }
+
 
 
 /* Seventh Scene Styling */

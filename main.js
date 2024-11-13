@@ -80,7 +80,7 @@ function transitionToScene(targetScene, fastTransition = false) {
   if (isTransitioning) return;
   isTransitioning = true;
 
-  const duration = fastTransition ? 0.2 : 1.5;
+  const duration = fastTransition ? 0.1 : 1.5;
 
   gsap.to(camera.position, {
     x: targetScene.position.x,
