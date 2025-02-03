@@ -608,6 +608,7 @@ canvas {
 
 /* Mobile Styles */
 @media (max-width: 768px) {
+
   .navbar ul {
     display: none;
     flex-direction: column;
@@ -630,7 +631,13 @@ canvas {
     font-size: 30px;
     cursor: pointer;
   }
+.fifth-scene-content{
+  top: 20px; /* Adjusted spacing */
+    left: 10px;
+    margin-left: 0;
+    padding: 20px;
 
+}
   .team-cards {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -653,5 +660,107 @@ canvas {
 
   .mobile-warning {
     display: flex; /* Show mobile warning on small screens */
+  
   }
+
+
+  
 }
+
+
+
+
+@media (max-width:1520px) {
+  .fifth-scene-content {
+    position: absolute;
+    display: none; /* Initially hidden; will show when transitioning to seventh scene */
+    text-align: center;
+    color: #FFFFFF;
+    width: 100%;
+    top: 10%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    animation: slideInTop 1.5s ease-out forwards;
+  }
+  
+  .fifth-scene-content, .sixth-scene-content {
+    padding: 20px 10px;
+  }
+  .team-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    justify-items: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .team-card {
+    background-color: hsl(0, 0%, 0%);
+    border-radius: 10px;
+    width: 150px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    margin:40px;
+    height:auto;
+  }
+  
+  .team-card:hover {
+    transform: scale(1.2);
+  }
+  
+  .team-card img {
+    width: 120px;
+    height: 110px;
+    border-radius: 50%;
+  }
+  
+  .team-member-name {
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-top: 10px;
+  }
+  
+  .faq-container {
+    position: relative;
+    max-height: 1200px;
+    width: 60%;
+    margin: 0 auto;
+    padding: 10px;
+    overflow-y: scroll;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    background: transparent;
+    margin-bottom: 30px;
+  }
+
+  third-scene-content {
+    top: 20px; /* Adjusted spacing */
+    left: 10px;
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .themes-title {
+    font-size: 50px; /* Reduced title size */
+    margin-bottom: 20px;
+  }
+
+  .theme-box {
+    width: 90%; /* Full width for better layout */
+    margin: 10px auto;
+    margin-bottom: 80px;
+    padding: 15px;
+  }
+
+  .theme-title {
+    font-size: 40px; /* Smaller font size */
+    margin-bottom: 5px;
+  }
+
+  .theme-description {
+    font-size: 14px; }}
