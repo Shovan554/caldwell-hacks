@@ -1,4 +1,4 @@
-/* Universal styles */
+/* Import custom fonts */
 @font-face {
   font-family: 'Silkscreen';
   src: url('./fonts/Silkscreen-Regular.ttf') format('truetype');
@@ -34,6 +34,7 @@ canvas {
   height: 100vh;
 }
 
+/* Navbar Styling */
 .navbar {
   position: fixed;
   top: 20px;
@@ -48,7 +49,7 @@ canvas {
   cursor: pointer;
   display: none;
   position: relative;
-  z-index: 1001; 
+  z-index: 1001;
 }
 
 .navbar ul {
@@ -70,70 +71,16 @@ canvas {
   transition: background-color 0.3s;
 }
 
+/* Hover effect for nav links */
 .navbar ul li a:hover {
   background-color: rgba(39, 55, 113, 0.6);
 }
 
-/* Mobile Styles */
-@media (max-width: 768px) {
-  .navbar ul {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    background:transparent;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    z-index: 999; /* Layer below hamburger */
-  }
-
-  .navbar ul.show {
-    display: flex; /* Show when hamburger is clicked */
-  }
-
-  .hamburger {
-    display: block; /* Show hamburger icon on small screens */
-    color: #FFFFFF;
-    font-size: 30px;
-    cursor: pointer;
-  }
+/* Active state: same style as hover */
+.navbar ul li a.active {
+  background-color: rgba(39, 55, 113, 0.6);
 }
 
-/* Slide-in keyframes */
-@keyframes slideInLeft {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-@keyframes slideInTop {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Logo Animation Styling */
 .logo-animation {
   display: none; /* Initially hidden; shown in first scene */
   position: absolute;
@@ -149,94 +96,98 @@ canvas {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: right;
-  gap: 20px;
-  opacity: 0; /* Initially hidden */
+  text-align: center;
+  position: relative;
+  gap: 10px;
+  opacity: 0;
   animation: slideInRight 1s ease-out forwards;
   animation-delay: 1.6s;
 }
 
+/* Logo Image - Positioned at the Bottom */
 .logo-row {
   display: flex;
   align-items: center;
-  gap: 5px; /* Reduced gap between logo image and ALDWELL text */
-  opacity: 0; /* Initially hidden */
+  justify-content: center;
+  opacity: 0;
   animation: slideInLeft 1s ease-out forwards;
   animation-delay: 1.6s;
 }
 
 .logo-img {
-  width: 500px;
+  width: 1400px;
   height: auto;
-  margin-top: 100px;
-  margin-left: -130px;
-  opacity: 0; /* Initially hidden */
-  animation: slideInLeft 1s ease-out forwards;
-  animation-delay: 1.2s;
+  margin-top: -200px;
+  opacity: 1;
+  animation: fadeIn 1s ease-out forwards;
 }
 
-.logo-aldwell {
-  font-family: 'Pixel', sans-serif;
-  font-size: 100px;
-  font-weight: bold;
-  margin-left: -170px; /* Reduced margin between ALDWELL and HACKS */
-  opacity: 1; /* Initially hidden */
-  animation: slideInLeft 0.5s ease-out forwards;
-  animation-delay: 0s;
-  margin-top:100px;
-}
-
-.logo-hacks-container {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: -80px;
-  margin-left:200px;
-}
-
-.logo-hacks {
-  font-family: 'Pixel', sans-serif;
-  font-size: 100px;
-  color: #e51010; /* Yellow color for HACKS */
-  opacity: 0;
-  animation: slideInLeft 0.5s ease-out forwards;
-  animation-delay: 0s;
-  margin-left:-100px;
-}
-
-/* Register Button Styling */
+/* Register Button - Positioned Above Logo */
 .register-button {
   font-family: 'Silkscreen', sans-serif;
-  font-size: 20px;
+  font-size: 22px;
   color: #FFFFFF;
   background-color: #273771;
-  padding: 15px 25px;
+  padding: 15px 30px;
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  opacity: 0;
-  animation: slideInRight 0.5s ease-out forwards;
-  animation-delay: 1s;
   transition: background-color 0.3s ease;
-  margin-left: 10px; /* Add slight spacing from "HACKS" */
+  margin-top: -400px; /* Moves it above the logo */
+  position: relative;
+  z-index: 2; /* Ensures button is visible above logo */
 }
 
 .register-button:hover {
   background-color: #1d2951;
 }
 
-.register-button a {
-  color: inherit;
-  text-decoration: none;
-}
-.date{
-  font-size: 30px;
-}
-.location{
-  color:yellow;
-  font-size:30px;
+/* Location & Date */
+.location,
+.date {
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 5px;
+  position: relative;
+  z-index: 2;
 }
 
+.location {
+  color: yellow;
+}
+
+.date {
+  color: white;
+}
+
+/* Mouse Icon - Positioned Above Logo */
+.mouse-icon {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.mouse-icon-image {
+  width: 40px;
+  height: auto;
+  margin-top: 5px;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 /* Footer Styling */
 .footer {
   position: fixed;
@@ -274,10 +225,10 @@ canvas {
   text-align: left;
 }
 
-.mouse-icon-image{
-  padding-top:5px;
-  width:40px;
-  height:auto
+.mouse-icon-image {
+  padding-top: 5px;
+  width: 40px;
+  height: auto;
 }
 
 /* Second Scene Content */
@@ -290,55 +241,48 @@ canvas {
   animation: slideInTop 1.9s ease-out forwards;
   animation-delay: 0s;
   transition: background-color 0.3s ease;
- 
-  
-
 }
-
 
 .second-scene-title {
   font-family: 'Pixel', sans-serif;
-  margin-top:100px;
+  margin-top: 100px;
   font-size: 60px;
   font-weight: bold;
   text-align: center;
-  color:yellow;
-
+  color: yellow;
 }
 
 .second-scene-description {
   font-size: 25px;
   margin-top: 10px;
   font-weight: normal;
-  margin-right:20px;
-
+  margin-right: 20px;
 }
 
-
-.footer-logo{
+.footer-logo {
   width: 180px;
-  height:180px;
+  height: 180px;
   margin-bottom: -80px;
 }
-.footer-right{
-  margin-top:80px;
-  margin-right:20px;
 
-}
-.footer-left{
-  margin-top:80px;
+.footer-right {
+  margin-top: 80px;
+  margin-right: 20px;
 }
 
-.second-scene-description strong{
-  color:red;
+.footer-left {
+  margin-top: 80px;
 }
 
-
-.footer-left a{
-  color:#FFFFFF
+.second-scene-description strong {
+  color: red;
 }
 
+.footer-left a {
+  color: #FFFFFF;
+}
 
+/* Third Scene Content */
 .third-scene-content {
   position: absolute;
   top: 50px; /* Below the navbar */
@@ -348,16 +292,15 @@ canvas {
   animation: slideInLeft 1.9s ease-out forwards;
   animation-delay: 0s;
   transition: background-color 0.3s ease;
-  margin-left:200px;
-
+  margin-left: 200px;
 }
-/* Third Scene Styling */
+
 .third-scene-content {
   display: none; /* Initially hidden; will show when transitioning to third scene */
   text-align: center;
   color: #FFFFFF;
   padding: 50px 20px;
-  margin-right:250px;
+  margin-right: 250px;
 }
 
 .themes-title {
@@ -366,7 +309,6 @@ canvas {
   font-weight: bold;
   margin-bottom: 40px;
   animation: fadeIn 1s ease-out forwards;
-
 }
 
 .theme-box {
@@ -389,7 +331,7 @@ canvas {
   font-size: 40px;
   font-weight: bold;
   margin-bottom: 10px;
-  color:red;
+  color: red;
 }
 
 .theme-description {
@@ -399,87 +341,7 @@ canvas {
   line-height: 1.6;
 }
 
-/* Fade-in animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-
-/* Universal styles */
-@font-face {
-  font-family: 'Silkscreen';
-  src: url('./fonts/Silkscreen-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Pixel';
-  src: url('./fonts/font5.ttf') format('truetype');
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: 'font2';
-  src: url('./fonts/font2.ttf') format('truetype');
-  font-weight: bold;
-}
-
-* {
-  font-family: 'Silkscreen', sans-serif;
-}
-
-body, html {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-canvas {
-  display: block;
-  width: 100vw;
-  height: 100vh;
-}
-
-/* Slide-in keyframes */
-@keyframes slideInLeft {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideInTop {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Centered Titles for All Scenes */
-.scene-title {
-  font-family: 'Pixel', sans-serif;
-  font-size: 60px;
-  font-weight: bold;
-  text-align: center;
-  color: #FFFFFF;
-  margin-bottom: 30px;
-}
-
-/* Fourth Scene Styling */
+/* Fourth Scene Content */
 .fourth-scene-content {
   position: absolute;
   display: none; /* Initially hidden; will show when transitioning to fourth scene */
@@ -487,7 +349,7 @@ canvas {
   color: #FFFFFF;
   padding: 50px 20px;
   width: 100%;
-  top: 120px; /* Adjust this value to fine-tune position */
+  top: 120px;
   animation: slideInTop 1.9s ease-out forwards;
   animation-delay: 0s;
   transition: background-color 0.3s ease;
@@ -502,7 +364,7 @@ canvas {
   animation-delay: 0s;
 }
 
-/* Fifth Scene Styling */
+/* Fifth Scene Content */
 .fifth-scene-content {
   position: absolute;
   display: none; /* Initially hidden; will show when transitioning to fifth scene */
@@ -510,7 +372,7 @@ canvas {
   color: #e9ffec;
   padding: 50px 20px;
   width: 100%;
-  top: 5px; /* Adjust this value to fine-tune position */
+  top: 5px;
   margin-right: 200px;
   animation: slideInRight 1.9s ease-out forwards;
   animation-delay: 0s;
@@ -521,29 +383,28 @@ canvas {
   font-family: 'Pixel', sans-serif;
   font-size: 60px;
   font-weight: bold;
- 
   margin-bottom: 30px;
 }
 
-.fifth-scene-content h2{
-  color:yellow;
-  font-size:50px;
+.fifth-scene-content h2 {
+  color: yellow;
+  font-size: 50px;
 }
-/* Use CSS Grid for team cards */
+
+/* Team Cards */
 .team-cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); 
+  grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  justify-items: center; /* Centers the cards within each grid cell */
+  justify-items: center;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Team Card Styling */
 .team-card {
   background-color: hsl(0, 0%, 0%);
   border-radius: 10px;
-  width: 190px; /* Set the width for the cards */
+  width: 190px;
   padding: 20px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -567,15 +428,7 @@ canvas {
   margin-top: 10px;
 }
 
-/* Mobile-responsive design */
-@media (max-width: 768px) {
-  .team-cards {
-    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on smaller screens */
-  }
-}
-
-
-/* Sixth Scene Styling */
+/* Sixth Scene Content */
 .sixth-scene-content {
   position: absolute;
   display: none; /* Initially hidden; will show when transitioning to sixth scene */
@@ -583,7 +436,7 @@ canvas {
   color: #FFFFFF;
   padding: 50px 20px;
   width: 100%;
-  top: 50px; /* Adjust this value to fine-tune position */
+  top: 50px;
   animation: slideInLeft 1.9s ease-out forwards;
   animation-delay: 0s;
   transition: background-color 0.3s ease;
@@ -597,19 +450,18 @@ canvas {
   margin-bottom: 0px;
 }
 
-/* Scrollable FAQ container */
+/* FAQ Container */
 .faq-container {
   position: relative;
-  max-height: 600px; /* Height of the scrollable box */
-  width: 60%; /* Adjust the width as needed */
+  max-height: 600px;
+  width: 60%;
   margin: 0 auto;
   padding: 10px;
-  overflow-y: scroll; /* Enable vertical scrolling */
-  border: 2px solid #fff; /* Border around the FAQ */
+  overflow-y: scroll;
+  border: 2px solid #fff;
   border-radius: 10px;
-  background :transparent;
-  margin-bottom :30px;
-  
+  background: transparent;
+  margin-bottom: 30px;
 }
 
 .faq-container:hover {
@@ -617,23 +469,20 @@ canvas {
 }
 
 .faq-container::-webkit-scrollbar {
-  width: 10px; /* Scrollbar width */
- 
-  
+  width: 10px;
 }
 
 .faq-container::-webkit-scrollbar-thumb {
-  background: #a8ff05; 
+  background: #a8ff05;
   border-radius: 10px;
 }
 
 .faq-container::-webkit-scrollbar-track {
   background: transparent;
-  
 }
 
 .faq-item {
-  background:transparent;
+  background: transparent;
   padding: 0px;
   margin-bottom: 0px;
   border-radius: 10px;
@@ -654,33 +503,85 @@ canvas {
   line-height: 1.6;
 }
 
-/* Mobile-responsive design for FAQ */
-@media (max-width: 768px) {
-  .faq-container {
-    width: 90%; /* Adjust the width for smaller screens */
+/* Seventh Scene Content */
+.seventh-scene-content {
+  position: absolute;
+  display: none; /* Initially hidden; will show when transitioning to seventh scene */
+  text-align: center;
+  color: #FFFFFF;
+  width: 100%;
+  top: 10%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  animation: slideInTop 1.5s ease-out forwards;
+}
+
+.seventh-scene-logo {
+  max-width: 700px; align-self: start;
+  height: 700px;
+}
+
+.follow-us-text {
+  color: yellow;
+}
+
+.instagram-logo {
+  width: 20px;
+}
+
+/* Keyframes for slide-in animations */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 
-
-@media (max-width: 768px) {
-  .team-card {
-    width: 80%; /* Stack team cards on mobile */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
   }
-
-  .fifth-scene-content, .sixth-scene-content {
-    padding: 20px 10px;
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
+}
 
-  .theme-box {
-    width: 80%; /* Stack themes on mobile */
+@keyframes slideInTop {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
   }
-}.mobile-warning {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Mobile Warning */
+.mobile-warning {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8); /* Dark background */
+  background-color: rgba(0, 0, 0, 0.8);
   color: #FFFFFF;
   display: none; /* Hidden by default */
   justify-content: center;
@@ -690,11 +591,10 @@ canvas {
 }
 
 .warning-message {
-  background: #ff0000; /* Red background for emphasis */
+  background: #ff0000;
   padding: 30px;
   border-radius: 50px;
   max-width: 100%;
-
 }
 
 .warning-message h2 {
@@ -706,41 +606,52 @@ canvas {
   font-size: 1.2em;
 }
 
-/* Mobile View Adjustments */
+/* Mobile Styles */
 @media (max-width: 768px) {
-  .mobile-warning {
-    display: flex;
+  .navbar ul {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    background: transparent;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    z-index: 999; /* Layer below hamburger */
   }
-}
 
+  .navbar ul.show {
+    display: flex; /* Show when hamburger is clicked */
+  }
 
+  .hamburger {
+    display: block; /* Show hamburger icon on small screens */
+    color: #FFFFFF;
+    font-size: 30px;
+    cursor: pointer;
+  }
 
-/* Seventh Scene Styling */
-.seventh-scene-content {
-  position: absolute;
-  display: none; /* Initially hidden; will show when transitioning to seventh scene */
-  text-align: center;
-  color: #FFFFFF;
-  width: 100%;
-  top: 10%; /* Vertically center */
-  left: 0%;
-  transform: translate(-50%, -50%); /* Center horizontally and vertically */
-  z-index: 10;
-  animation: slideInTop 1.5s ease-out forwards; /* Apply slideInTop transition */
-}
+  .team-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-.seventh-scene-logo {
-  max-width: 700px; 
-  height: 700px;
-}
+  .faq-container {
+    width: 90%;
+  }
 
-/* Slide-in animation from top */
+  .team-card {
+    width: 80%;
+  }
 
-.follow-us-text{
-  color: yellow;
-}
+  .fifth-scene-content, .sixth-scene-content {
+    padding: 20px 10px;
+  }
 
+  .theme-box {
+    width: 80%;
+  }
 
-.instagram-logo{
-  width:20px
+  .mobile-warning {
+    display: flex; /* Show mobile warning on small screens */
+  }
 }

@@ -2,7 +2,6 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import gsap from 'gsap';
 
-
 const canvas = document.getElementById('three-canvas');
 const logoAnimation = document.getElementById('logoAnimation');
 const secondSceneContent = document.getElementById('secondSceneContent'); 
@@ -66,7 +65,7 @@ const initialScene = scenes[0];
 camera.position.set(initialScene.position.x, initialScene.position.y, initialScene.position.z);
 camera.rotation.set(initialScene.rotation.x, initialScene.rotation.y, initialScene.rotation.z);
 
-// Initially hiding the  content
+// Initially hiding the content (except the logo animation)
 seventhSceneContent.style.display = "none";
 sixthSceneContent.style.display = "none";
 fifthSceneContent.style.display = "none";
@@ -103,12 +102,12 @@ function transitionToScene(targetScene, fastTransition = false) {
 // Update visibility based on scene
 function updateSceneVisibility() {
   logoAnimation.style.display = currentScene === 0 ? "block" : "none";
-  secondSceneContent.style.display = currentScene === 1 ? "block" : "none"; //second scene 
-  thirdSceneContent.style.display = currentScene === 2 ? "block" : "none";//third scene
-  fourthSceneContent.style.display = currentScene === 3? "block" : "none";
+  secondSceneContent.style.display = currentScene === 1 ? "block" : "none";
+  thirdSceneContent.style.display = currentScene === 2 ? "block" : "none";
+  fourthSceneContent.style.display = currentScene === 3 ? "block" : "none";
   fifthSceneContent.style.display = currentScene === 4 ? "block" : "none";
   sixthSceneContent.style.display = currentScene === 5 ? "block" : "none";
-  seventhSceneContent.style.display = currentScene ===6? "block" :"none";
+  seventhSceneContent.style.display = currentScene === 6 ? "block" : "none";
 }
 
 // Smooth transition function
@@ -128,11 +127,27 @@ function smoothTransitionToTarget(targetIndex) {
   stepThroughScenes();
 }
 
+// Update active class on navbar links
+function updateActiveNavLink(targetIndex) {
+  const navLinks = document.querySelectorAll('.navbar a');
+  navLinks.forEach((link) => {
+    // Remove active class from all links
+    link.classList.remove('active');
+  });
+  // Find and add active class to the link with matching data-target
+  navLinks.forEach((link) => {
+    if (parseInt(link.getAttribute('data-target')) === targetIndex) {
+      link.classList.add('active');
+    }
+  });
+}
+
 // Event listener for navbar links
 document.querySelectorAll('.navbar a').forEach((link) => {
   link.addEventListener('click', (event) => {
     event.preventDefault();
     const targetIndex = parseInt(link.getAttribute('data-target'));
+    updateActiveNavLink(targetIndex);
     smoothTransitionToTarget(targetIndex);
   });
 });
@@ -147,7 +162,8 @@ window.addEventListener('wheel', (event) => {
     currentScene--;
   }
   transitionToScene(scenes[currentScene]);
-  updateSceneVisibility(); // Update visibility when scrolling
+  updateSceneVisibility();
+  updateActiveNavLink(currentScene);
 });
 
 // Animate and render scene
@@ -163,6 +179,7 @@ window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 });
+
 // Function to detect if the device is mobile
 function isMobileDevice() {
   return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -172,10 +189,10 @@ function isMobileDevice() {
 if (isMobileDevice()) {
   document.getElementById('mobileWarning').style.display = 'flex';
 }
+
 const hamburger = document.getElementById('hamburger');
 const navbarMenu = document.getElementById('navbarMenu');
 
 hamburger.addEventListener('click', () => {
   navbarMenu.classList.toggle('show');
 });
-
