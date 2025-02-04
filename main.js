@@ -196,3 +196,29 @@ const navbarMenu = document.getElementById('navbarMenu');
 hamburger.addEventListener('click', () => {
   navbarMenu.classList.toggle('show');
 });
+function jumpToScene(targetIndex) {
+  if (targetIndex < 0 || targetIndex >= scenes.length) return;
+
+  // Set camera position and rotation directly
+  const targetScene = scenes[targetIndex];
+  camera.position.set(targetScene.position.x, targetScene.position.y, targetScene.position.z);
+  camera.rotation.set(targetScene.rotation.x, targetScene.rotation.y, targetScene.rotation.z);
+
+  // Update current scene index
+  currentScene = targetIndex;
+
+  // Update scene visibility
+  updateSceneVisibility();
+
+  // Update navbar active state
+  updateActiveNavLink(targetIndex);
+}
+
+// Navbar event listener to jump directly to the scene
+document.querySelectorAll('.navbar a').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    const targetIndex = parseInt(link.getAttribute('data-target'));
+    jumpToScene(targetIndex);
+  });
+});
