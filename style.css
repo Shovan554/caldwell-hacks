@@ -1,4 +1,6 @@
-/* Import custom fonts */
+/* ==================== */
+/* Global Styles */
+/* ==================== */
 @font-face {
   font-family: 'Silkscreen';
   src: url('./fonts/Silkscreen-Regular.ttf') format('truetype');
@@ -34,13 +36,15 @@ canvas {
   height: 100vh;
 }
 
-/* Navbar Styling */
+/* ==================== */
+/* Navigation Bar */
+/* ==================== */
 .navbar {
   position: fixed;
   top: 20px;
   width: 100%;
   text-align: center;
-  z-index: 1000; /* Ensure navbar is above all other elements */
+  z-index: 1000;
   background-color: transparent;
 }
 
@@ -71,18 +75,19 @@ canvas {
   transition: background-color 0.3s;
 }
 
-/* Hover effect for nav links */
 .navbar ul li a:hover {
   background-color: rgba(39, 55, 113, 0.6);
 }
 
-/* Active state: same style as hover */
 .navbar ul li a.active {
   background-color: rgba(39, 55, 113, 0.6);
 }
 
+/* ==================== */
+/* First Scene - Logo Animation */
+/* ==================== */
 .logo-animation {
-  display: none; /* Initially hidden; shown in first scene */
+  display: none;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -104,7 +109,6 @@ canvas {
   animation-delay: 1.6s;
 }
 
-/* Logo Image - Positioned at the Bottom */
 .logo-row {
   display: flex;
   align-items: center;
@@ -122,7 +126,6 @@ canvas {
   animation: fadeIn 1s ease-out forwards;
 }
 
-/* Register Button - Positioned Above Logo */
 .register-button {
   font-family: 'Silkscreen', sans-serif;
   font-size: 22px;
@@ -133,16 +136,15 @@ canvas {
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: -400px; /* Moves it above the logo */
+  margin-top: -400px;
   position: relative;
-  z-index: 2; /* Ensures button is visible above logo */
+  z-index: 2;
 }
 
 .register-button:hover {
   background-color: #1d2951;
 }
 
-/* Location & Date */
 .location,
 .date {
   font-size: 28px;
@@ -160,7 +162,6 @@ canvas {
   color: white;
 }
 
-/* Mouse Icon - Positioned Above Logo */
 .mouse-icon {
   font-size: 18px;
   font-weight: bold;
@@ -177,65 +178,16 @@ canvas {
   width: 40px;
   height: auto;
   margin-top: 5px;
-}
-
-/* Fade-in animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-/* Footer Styling */
-.footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: transparent;
-  padding: 10px 20px;
-  z-index: 1000;
-}
-
-.footer-text {
-  color: #FFFFFF;
-  font-family: 'Silkscreen', sans-serif;
-}
-
-.footer .footer-center {
-  color: #FFFFFF;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.footer .footer-right {
-  color: #FFFFFF;
-  font-size: 18px;
-  text-align: right;
-}
-
-.footer .footer-left {
-  color: #FFFFFF;
-  font-size: 18px;
-  text-align: left;
-}
-
-.mouse-icon-image {
   padding-top: 5px;
-  width: 40px;
-  height: auto;
 }
 
-/* Second Scene Content */
+/* ==================== */
+/* Second Scene */
+/* ==================== */
 .second-scene-content {
   position: absolute;
-  top: 120px; /* Below the navbar */
-  left: 20px; /* Aligned to the left */
+  top: 120px;
+  left: 20px;
   color: #FFFFFF;
   z-index: 10;
   animation: slideInTop 1.9s ease-out forwards;
@@ -259,92 +211,75 @@ canvas {
   margin-right: 20px;
 }
 
-.footer-logo {
-  width: 180px;
-  height: 180px;
-  margin-bottom: -80px;
-}
-
-.footer-right {
-  margin-top: 80px;
-  margin-right: 20px;
-}
-
-.footer-left {
-  margin-top: 80px;
-}
-
 .second-scene-description strong {
   color: red;
 }
 
-.footer-left a {
-  color: #FFFFFF;
-}
+/* ==================== */
+/* Third Scene - Themes */
+/* ==================== */
 
-/* Third Scene Content */
+
 .third-scene-content {
   position: absolute;
-  top: 20px; /* Below the navbar */
- 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center; /* Horizontal center */
+  align-items: center;     /* Vertical center */
+  z-index: 0;
   color: #FFFFFF;
   z-index: 10;
   animation: slideInLeft 1.9s ease-out forwards;
   animation-delay: 0s;
   transition: background-color 0.3s ease;
-  margin-left: 00px;
+  display: none;
+  text-align: center;
+  padding: 50px 20px;
 }
 
-.third-scene-content {
-  display: none; /* Initially hidden; will show when transitioning to third scene */
-  text-align: center;
-  color: #FFFFFF;
-  padding: 50px 20px;
-  margin: 0 auto;
-  max-width: 1400px;
-  margin-left: 400px; 
-}
 
 .themes-title {
   font-family: 'Pixel', sans-serif;
   font-size: 80px;
   font-weight: bold;
   margin-bottom: 10px;
-
   width: 100%;
-  margin-left: -200px;
+
   animation: fadeIn 1s ease-out forwards;
 }
 
-/* Container for theme boxes */
 .theme-boxes-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 5px;
-  padding: 0 30px;
-  max-width: 1200px;
+  width: 100%;
+  max-width: 800px;
   margin: 0 auto;
-  margin-right: 380px; /* Increased margin-right to shift boxes more to the right */
+  padding: 0;
+  gap: 20px;
+  justify-content: center;
 }
 
 .theme-box {
-  width: calc(50% - 20px);
-  max-width: 400px;
+  width: 300px;
+  flex: 0 0 300px;
   background-color: rgba(39, 55, 113, 0.6);
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
-  margin: 20px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  margin: 0;
+  
 }
 
 .theme-box:hover {
-  transform: scale(1.05);
+  transform: scale(1.2);
 }
 
 .theme-title {
@@ -362,66 +297,12 @@ canvas {
   line-height: 1.4;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .third-scene-content {
-    margin-left: 150px; /* Adjusted for smaller screens */
-  }
-  
-  .theme-boxes-container {
-    margin-right: 150px; /* Adjusted for smaller screens */
-  }
-  .themes-title {
-    margin-right: 150px; /* Adjusted for smaller screens */
-    font-size: 32px;
-  }
-
-  .theme-boxes-container {
-    gap: 10px;
-    padding: 0 10px;
-  }
-
-  .theme-box {
-    width: calc(50% - 10px);
-    padding: 15px;
-  }
-
-  .theme-title {
-    font-size: 20px;
-  }
-
-  .theme-description {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 600px) {
-  .third-scene-content {
-    margin-left: 75px; /* Adjusted for mobile */
-  }
-  
-  .theme-boxes-container {
-    margin-right: 75px; /* Adjusted for mobile */
-  }
-  .theme-boxes-container {
-    gap: 8px;
-    padding: 0 5px;
-  }
-
-  .theme-box {
-    width: calc(50% - 5px);
-    padding: 10px;
-  }
-  .themes-title {
-    margin-right: 75px; /* Adjusted for mobile */
-    font-size: 24px;
-  }
-}
-
-/* Fourth Scene Content */
+/* ==================== */
+/* Fourth Scene */
+/* ==================== */
 .fourth-scene-content {
   position: absolute;
-  display: none; /* Initially hidden; will show when transitioning to fourth scene */
+  display: none;
   text-align: center;
   color: #FFFFFF;
   padding: 50px 20px;
@@ -441,51 +322,62 @@ canvas {
   animation-delay: 0s;
 }
 
-/* Fifth Scene Content */
+/* ==================== */
+/* Fifth Scene - Team */
+/* ==================== */
+
 .fifth-scene-content {
   position: absolute;
-  display: none; /* Initially hidden; will show when transitioning to fifth scene */
+  top: -20px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center; /* Horizontal center */
+  align-items: center;     /* Vertical center */
+  
+  display: none;
   text-align: center;
   color: #e9ffec;
-  padding: 50px 20px;
+  padding: 30px 10px;
   width: 100%;
-  top: 5px;
-  margin-right: 200px;
   animation: slideInRight 1.9s ease-out forwards;
   animation-delay: 0s;
   transition: background-color 0.3s ease;
+  margin: 0 auto;
 }
-
-.fifth-scene-title {
+.scene-title {
   font-family: 'Pixel', sans-serif;
-  font-size: 60px;
+  font-size: 40px;
   font-weight: bold;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .fifth-scene-content h2 {
-  color: yellow;
-  font-size: 50px;
+  color: rgb(255, 255, 255);
+  font-size: 60px;
+  margin-top: 150px;;
+  
 }
 
-/* Team Cards */
 .team-cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  justify-items: center;
-  margin-left: auto;
-  margin-right: auto;
+  grid-template-columns: repeat(4, 1fr); /* Max 4 per row */
+  gap: 15px; /* Even spacing between cards */
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  
 }
-
 .team-card {
   background-color: hsl(0, 0%, 0%);
   border-radius: 10px;
-  width: 190px;
+  width: 100%; /* allow it to fill the grid cell */
   padding: 20px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
+  width:200px;
 }
 
 .team-card:hover {
@@ -493,19 +385,24 @@ canvas {
 }
 
 .team-card img {
-  width: 180px;
-  height: 170px;
+  width: 170px;
+  height: 160px;
   border-radius: 50%;
 }
 
 .team-member-name {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
   color: #FFFFFF;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
-/* Sixth Scene Content */
+/* ==================== */
+/* Sixth Scene - FAQ */
+/* ==================== */
+
+
+/* FAQ Container */
 .sixth-scene-content {
   position: absolute;
   display: none; /* Initially hidden; will show when transitioning to sixth scene */
@@ -531,7 +428,7 @@ canvas {
 /* FAQ Container */
 .faq-container {
   position: relative;
-  max-height: 600px;
+  max-height: 70vh;
   width: 60%;
   margin: 0 auto;
   padding: 10px;
@@ -588,9 +485,14 @@ canvas {
 }
 
 /* Seventh Scene Content */
+
+
+/* ==================== */
+/* Seventh Scene */
+/* ==================== */
 .seventh-scene-content {
   position: absolute;
-  display: none; /* Initially hidden; will show when transitioning to seventh scene */
+  display: none;
   text-align: center;
   color: #FFFFFF;
   width: 100%;
@@ -602,7 +504,8 @@ canvas {
 }
 
 .seventh-scene-logo {
-  max-width: 700px; align-self: start;
+  max-width: 700px;
+  align-self: start;
   height: 700px;
 }
 
@@ -614,7 +517,61 @@ canvas {
   width: 20px;
 }
 
-/* Keyframes for slide-in animations */
+/* ==================== */
+/* Footer */
+/* ==================== */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  padding: 10px 20px;
+  z-index: 1000;
+}
+
+.footer-text {
+  color: #FFFFFF;
+  font-family: 'Silkscreen', sans-serif;
+}
+
+.footer .footer-center {
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.footer .footer-right {
+  color: #FFFFFF;
+  font-size: 18px;
+  text-align: right;
+  margin-top: 80px;
+  margin-right: 20px;
+}
+
+.footer .footer-left {
+  color: #FFFFFF;
+  font-size: 18px;
+  text-align: left;
+  margin-top: 80px;
+}
+
+.footer-logo {
+  width: 180px;
+  height: 180px;
+  margin-bottom: -80px;
+}
+
+.footer-left a {
+  color: #FFFFFF;
+}
+
+/* ==================== */
+/* Animations */
+/* ==================== */
 @keyframes slideInLeft {
   from {
     transform: translateX(-100%);
@@ -648,7 +605,6 @@ canvas {
   }
 }
 
-/* Fade-in animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -658,7 +614,9 @@ canvas {
   }
 }
 
+/* ==================== */
 /* Mobile Warning */
+/* ==================== */
 .mobile-warning {
   position: fixed;
   top: 0;
@@ -667,7 +625,7 @@ canvas {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   color: #FFFFFF;
-  display: none; /* Hidden by default */
+  display: none;
   justify-content: center;
   align-items: center;
   z-index: 1001;
@@ -690,226 +648,91 @@ canvas {
   font-size: 1.2em;
 }
 
-/* Mobile Styles */
-@media (max-width: 1250px) {
-
-  .navbar ul {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    background: transparent;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    z-index: 999; /* Layer below hamburger */
-  }
-
-  .navbar ul.show {
-    display: flex; /* Show when hamburger is clicked */
-  }
-
-  .hamburger {
-    display: block; /* Show hamburger icon on small screens */
-    color: #FFFFFF;
-    font-size: 30px;
-    cursor: pointer;
-  }
-.fifth-scene-content{
-  top: 20px; /* Adjusted spacing */
-    left: 10px;
-    margin-left: 0;
-    padding: 20px;
-
-}
-  .team-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .faq-container {
-    width: 90%;
-  }
-
-  .team-card {
-    width: 80%;
-  }
-
-  .fifth-scene-content, .sixth-scene-content {
-    padding: 20px 10px;
-  }
-
-  .theme-box {
-    width: 100%;
-  }
-
-  .mobile-warning {
-    gap:10px;
-    display: flex; /* Show mobile warning on small screens */
-  
-  }
+/* ==================== */
+/* Media Queries */
+/* ==================== */
 
 
-  
-}
-
-@media (max-width:1770px){
-  .themes-title {
-    font-size: 20px; /* Reduced title size */
-    margin-bottom: 10px;
-  }
-
-  .theme-box {
-    width: 30%; 
-    margin: 5px auto;
-    margin-bottom: 10px;
-    padding: 15px;
-    min-width:150px;
-  }
-
-  .theme-title {
-    font-size: 19px; /* Smaller font size */
-    margin-bottom: 5px;
-  }
-
-  .theme-description {
-    font-size: 14px; }
-
-}
-
-
-@media (max-width:1520px) {
+@media (max-width: 1120px) {
+  /* Navigation adjustments */
   .navbar {
-    position: fixed;
     top: 20px;
-    width: 100%;
-    text-align: center;
-    z-index: 1000; /* Ensure navbar is above all other elements */
-    background-color: transparent;
-    font-size:20px;
+    font-size: 20px;
   }
 
+  /* Second scene adjustments */
   .second-scene-content {
-    position: absolute;
-    top: 10px; /* Below the navbar */
-    left: 20px; /* Aligned to the left */
-    color: #FFFFFF;
-    z-index: 10;
-    animation: slideInTop 1.9s ease-out forwards;
-    animation-delay: 0s;
-    transition: background-color 0.3s ease;
+    top: 10px;
   }
   
   .second-scene-title {
-    font-family: 'Pixel', sans-serif;
-  
     font-size: 40px;
-    font-weight: bold;
-    text-align: center;
-    color: yellow;
   }
   
   .second-scene-description {
     font-size: 23px;
-    margin-top: 10px;
-    font-weight: normal;
-    margin-right: 20px;
   }
 
-  
 
+}
+
+@media (max-width: 1250px) {
+  /* Fifth scene adjustments */
   .fifth-scene-content {
-    position: absolute;
-    display: none; /* Initially hidden; will show when transitioning to seventh scene */
-    text-align: center;
-    color: #FFFFFF;
-    width: 100%;
     top: 0%;
     left: 0%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    animation: slideInTop 1.5s ease-out forwards;
+    transform: none;
   }
-  
-  .fifth-scene-content, .sixth-scene-content {
-    padding: 20px 10px;
-  }
+
   .team-cards {
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 5px;
-    justify-items: center;
-    margin-left: auto;
-    margin-right: auto;
   }
-  
+
   .team-card {
-    background-color: hsl(0, 0%, 0%);
-    border-radius: 10px;
-    width: 90px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
-    height:auto;
-    margin:20px;
+    width: 120px;
+    height: auto;
+    margin: 5px;
   }
-  
-  .team-card:hover {
-    transform: scale(1.2);
-  }
-  
+
   .team-card img {
-    width: 90px;
-    height: 80px;
-    border-radius: 50%;
+    width: 120px;
+    height: 110px;
   }
-  
-  .team-member-name {
-    font-size: 8px;
-    font-weight: bold;
-    color: #FFFFFF;
-   
-  }
-  .team-memeber-position{
-    font-size:8px;
-  }  
-  .faq-container {
-    position: relative;
-    max-height: 650px;
-    width: 60%;
-    
+
+  /* Second scene adjustments */
+  .second-scene-content {
     padding: 10px;
-    overflow-y: scroll;
-    border: 2px solid #fff;
-    border-radius: 10px;
-    background: transparent;
-    margin-bottom: 20px;
   }
 
-  third-scene-content {
-    top: 0px; /* Adjusted spacing */
-    left: 10px;
-    margin-left: 0;
-    padding: 20px;
+  .second-scene-title {
+    font-size: 30px;
   }
 
-  .themes-title {
-    font-size: 20px; /* Reduced title size */
-    margin-bottom: 10px;
+  .second-scene-description {
+    font-size: 18px;
   }
 
-  .theme-box {
-    width: 30%; 
-    margin: 5px auto;
-    margin-bottom: 10px;
-    padding: 15px;
-    min-width:150px;
+  /* Logo adjustments */
+  .logo-img {
+    width: 1000px;
+    margin-top: -150px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Hide desktop content and show mobile warning */
+  #three-canvas,
+  .navbar,
+  .logo-animation,
+  .scene-content {
+    display: none;
   }
 
-  .theme-title {
-    font-size: 19px; /* Smaller font size */
-    margin-bottom: 5px;
+  .mobile-warning {
+    display: flex;
   }
+}
 
-  .theme-description {
-    font-size: 14px; }}
+
+
