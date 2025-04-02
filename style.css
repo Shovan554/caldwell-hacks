@@ -286,13 +286,13 @@ canvas {
 .third-scene-content {
   position: absolute;
   top: 50px; /* Below the navbar */
-  left: 20px; /* Aligned to the left */
+ 
   color: #FFFFFF;
   z-index: 10;
   animation: slideInLeft 1.9s ease-out forwards;
   animation-delay: 0s;
   transition: background-color 0.3s ease;
-  margin-left: 200px;
+  margin-left: 00px;
 }
 
 .third-scene-content {
@@ -300,35 +300,56 @@ canvas {
   text-align: center;
   color: #FFFFFF;
   padding: 50px 20px;
-  margin-right: 250px;
+  margin: 0 auto;
+  max-width: 1400px;
+  margin-left: 400px; 
 }
 
 .themes-title {
   font-family: 'Pixel', sans-serif;
-  font-size: 60px;
+  font-size: 80px;
   font-weight: bold;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+
+  width: 100%;
+  margin-left: -200px;
   animation: fadeIn 1s ease-out forwards;
 }
 
+/* Container for theme boxes */
+.theme-boxes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-right: 380px; /* Increased margin-right to shift boxes more to the right */
+}
+
 .theme-box {
-  display: inline-block;
-  width: 30%;
-  background-color: rgba(39, 55, 113, 0.6); /* Semi-transparent background */
-  margin: 20px;
+  width: calc(50% - 20px);
+  max-width: 400px;
+  background-color: rgba(39, 55, 113, 0.6);
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .theme-box:hover {
-  transform: scale(1.05); /* Slight scaling effect on hover */
+  transform: scale(1.05);
 }
 
 .theme-title {
   font-family: 'font2', sans-serif;
-  font-size: 40px;
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
   color: red;
@@ -336,9 +357,65 @@ canvas {
 
 .theme-description {
   font-family: 'Silkscreen', sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   color: #FFFFFF;
-  line-height: 1.6;
+  line-height: 1.4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .third-scene-content {
+    margin-left: 150px; /* Adjusted for smaller screens */
+  }
+  
+  .theme-boxes-container {
+    margin-right: 150px; /* Adjusted for smaller screens */
+  }
+  .themes-title {
+    margin-right: 150px; /* Adjusted for smaller screens */
+    font-size: 32px;
+  }
+
+  .theme-boxes-container {
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .theme-box {
+    width: calc(50% - 10px);
+    padding: 15px;
+  }
+
+  .theme-title {
+    font-size: 20px;
+  }
+
+  .theme-description {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .third-scene-content {
+    margin-left: 75px; /* Adjusted for mobile */
+  }
+  
+  .theme-boxes-container {
+    margin-right: 75px; /* Adjusted for mobile */
+  }
+  .theme-boxes-container {
+    gap: 8px;
+    padding: 0 5px;
+  }
+
+  .theme-box {
+    width: calc(50% - 5px);
+    padding: 10px;
+  }
+  .themes-title {
+    margin-right: 75px; /* Adjusted for mobile */
+    font-size: 24px;
+  }
 }
 
 /* Fourth Scene Content */
@@ -607,7 +684,7 @@ canvas {
 }
 
 /* Mobile Styles */
-@media (max-width: 768px) {
+@media (max-width: 1250px) {
 
   .navbar ul {
     display: none;
@@ -655,10 +732,11 @@ canvas {
   }
 
   .theme-box {
-    width: 80%;
+    width: 100%;
   }
 
   .mobile-warning {
+    gap:10px;
     display: flex; /* Show mobile warning on small screens */
   
   }
@@ -768,7 +846,7 @@ canvas {
   }  
   .faq-container {
     position: relative;
-    max-height: 600px;
+    max-height: 400px;
     width: 60%;
     
     padding: 10px;
@@ -792,10 +870,11 @@ canvas {
   }
 
   .theme-box {
-    width: 100%; /* Full width for better layout */
+    width: 30%; 
     margin: 5px auto;
     margin-bottom: 10px;
     padding: 15px;
+    min-width:150px;
   }
 
   .theme-title {
