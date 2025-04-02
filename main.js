@@ -12,7 +12,6 @@ const sixthSceneContent = document.getElementById('sixthSceneContent');
 const seventhSceneContent = document.getElementById('seventhSceneContent');
 const scene = new THREE.Scene();
 
-// Array of scene positions and rotations
 const scenes = [
   { position: { x: -30.6711, y: -130.928, z: 40.7944 }, rotation: { x: 1.5762, y: -0.0045, z: 2.4401 } },
   { position: { x: 6.6714, y: 23.928, z: 20.2791 }, rotation: { x: -0.8466, y: 0.2146, z: 0.2363 } },
@@ -23,7 +22,6 @@ const scenes = [
   { position: { x: 14.8131, y: 27.0571, z: -10.8962 }, rotation: { x: -1.9669, y: 0.4830, z: 2.3038 } }
 ];
 
-// Set up the camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -31,7 +29,6 @@ renderer.setPixelRatio(window.devicePixelRatio);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-// Lighting setup
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
 scene.add(ambientLight);
 
@@ -44,7 +41,6 @@ const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
 directionalLight2.position.set(-5, -10, -7.5);
 scene.add(directionalLight2);
 
-// Load the GLB model
 const loader = new GLTFLoader();
 loader.load('/3Dmodels/wanderers.glb', (gltf) => {
   const model = gltf.scene;
@@ -58,14 +54,12 @@ loader.load('/3Dmodels/wanderers.glb', (gltf) => {
   scene.add(model);
 }, undefined, (error) => console.error('An error occurred while loading the model:', error));
 
-// Start at the first scene on load
 let currentScene = 0;
 let isTransitioning = false;
 const initialScene = scenes[0];
 camera.position.set(initialScene.position.x, initialScene.position.y, initialScene.position.z);
 camera.rotation.set(initialScene.rotation.x, initialScene.rotation.y, initialScene.rotation.z);
 
-// Initially hiding the content (except the logo animation)
 seventhSceneContent.style.display = "none";
 sixthSceneContent.style.display = "none";
 fifthSceneContent.style.display = "none";
@@ -74,11 +68,9 @@ thirdSceneContent.style.display = "none";
 secondSceneContent.style.display = "none";
 logoAnimation.style.display = "block";
 
-// Transition function
 function transitionToScene(targetScene, fastTransition = false) {
   if (isTransitioning) return;
   isTransitioning = true;
-
   const duration = fastTransition ? 0.1 : 1.5;
 
   gsap.to(camera.position, {
@@ -99,7 +91,6 @@ function transitionToScene(targetScene, fastTransition = false) {
   });
 }
 
-// Update visibility based on scene
 function updateSceneVisibility() {
   logoAnimation.style.display = currentScene === 0 ? "block" : "none";
   secondSceneContent.style.display = currentScene === 1 ? "block" : "none";
@@ -110,7 +101,6 @@ function updateSceneVisibility() {
   seventhSceneContent.style.display = currentScene === 6 ? "block" : "none";
 }
 
-// Smooth transition function
 function smoothTransitionToTarget(targetIndex) {
   const stepThroughScenes = () => {
     if (currentScene < targetIndex) {
@@ -127,14 +117,11 @@ function smoothTransitionToTarget(targetIndex) {
   stepThroughScenes();
 }
 
-// Update active class on navbar links
 function updateActiveNavLink(targetIndex) {
   const navLinks = document.querySelectorAll('.navbar a');
   navLinks.forEach((link) => {
-    // Remove active class from all links
     link.classList.remove('active');
   });
-  // Find and add active class to the link with matching data-target
   navLinks.forEach((link) => {
     if (parseInt(link.getAttribute('data-target')) === targetIndex) {
       link.classList.add('active');
@@ -142,7 +129,6 @@ function updateActiveNavLink(targetIndex) {
   });
 }
 
-// Event listener for navbar links
 document.querySelectorAll('.navbar a').forEach((link) => {
   link.addEventListener('click', (event) => {
     event.preventDefault();
@@ -152,40 +138,66 @@ document.querySelectorAll('.navbar a').forEach((link) => {
   });
 });
 
-// Scroll event handler to navigate scenes
+// 🟡 FAQ Hover + Scroll Behavior
+let isHoveringFAQ = false;
+const faqContainer = document.querySelector('.faq-container');
+
+faqContainer.addEventListener('mouseenter', () => {
+  isHoveringFAQ = true;
+});
+
+faqContainer.addEventListener('mouseleave', () => {
+  isHoveringFAQ = false;
+});
+
+// 🟢 Scroll Inside FAQ Container
+faqContainer.addEventListener('wheel', (event) => {
+  if (currentScene === 5) {
+    const delta = event.deltaY;
+    if (faqContainer.scrollHeight > faqContainer.clientHeight) {
+      event.preventDefault();
+      faqContainer.scrollTop += delta;
+    }
+  }
+}, { passive: false });
+
+// 🔵 Scroll Scenes Only If Not Hovering FAQ
 window.addEventListener('wheel', (event) => {
   if (isTransitioning) return;
 
+  if (currentScene === 5 && isHoveringFAQ) return;
+
+  event.preventDefault();
+
   if (event.deltaY > 0 && currentScene < scenes.length - 1) {
     currentScene++;
+    transitionToScene(scenes[currentScene]);
+    updateSceneVisibility();
+    updateActiveNavLink(currentScene);
   } else if (event.deltaY < 0 && currentScene > 0) {
     currentScene--;
+    transitionToScene(scenes[currentScene]);
+    updateSceneVisibility();
+    updateActiveNavLink(currentScene);
   }
-  transitionToScene(scenes[currentScene]);
-  updateSceneVisibility();
-  updateActiveNavLink(currentScene);
-});
+}, { passive: false });
 
-// Animate and render scene
 function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
 }
 animate();
 
-// Adjust camera on window resize
 window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 });
 
-// Function to detect if the device is mobile
 function isMobileDevice() {
   return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 }
 
-// Show mobile warning if on a mobile device
 if (isMobileDevice()) {
   document.getElementById('mobileWarning').style.display = 'flex';
 }
@@ -196,25 +208,20 @@ const navbarMenu = document.getElementById('navbarMenu');
 hamburger.addEventListener('click', () => {
   navbarMenu.classList.toggle('show');
 });
+
 function jumpToScene(targetIndex) {
   if (targetIndex < 0 || targetIndex >= scenes.length) return;
 
-  // Set camera position and rotation directly
   const targetScene = scenes[targetIndex];
   camera.position.set(targetScene.position.x, targetScene.position.y, targetScene.position.z);
   camera.rotation.set(targetScene.rotation.x, targetScene.rotation.y, targetScene.rotation.z);
 
-  // Update current scene index
   currentScene = targetIndex;
 
-  // Update scene visibility
   updateSceneVisibility();
-
-  // Update navbar active state
   updateActiveNavLink(targetIndex);
 }
 
-// Navbar event listener to jump directly to the scene
 document.querySelectorAll('.navbar a').forEach((link) => {
   link.addEventListener('click', (event) => {
     event.preventDefault();

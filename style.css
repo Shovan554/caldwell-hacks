@@ -517,6 +517,7 @@ canvas {
   animation: slideInLeft 1.9s ease-out forwards;
   animation-delay: 0s;
   transition: background-color 0.3s ease;
+  overflow: hidden;
 }
 
 .sixth-scene-title {
@@ -534,28 +535,34 @@ canvas {
   width: 60%;
   margin: 0 auto;
   padding: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
   border: 2px solid #fff;
   border-radius: 10px;
   background: transparent;
   margin-bottom: 30px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+  cursor: default; /* Shows default cursor to indicate scrollable area */
 }
 
 .faq-container:hover {
-  transform: scale(1.01);
+  /* Optional: add subtle visual feedback when hovering */
+  background: rgba(255, 255, 255, 0.05);
 }
 
+/* Custom scrollbar styling */
 .faq-container::-webkit-scrollbar {
-  width: 10px;
-}
-
-.faq-container::-webkit-scrollbar-thumb {
-  background: #a8ff05;
-  border-radius: 10px;
+  width: 8px;
+  
 }
 
 .faq-container::-webkit-scrollbar-track {
   background: transparent;
+}
+
+.faq-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
 }
 
 .faq-item {
@@ -868,7 +875,7 @@ canvas {
   }  
   .faq-container {
     position: relative;
-    max-height: 400px;
+    max-height: 650px;
     width: 60%;
     
     padding: 10px;
@@ -876,7 +883,7 @@ canvas {
     border: 2px solid #fff;
     border-radius: 10px;
     background: transparent;
-    margin-bottom: 180px;
+    margin-bottom: 20px;
   }
 
   third-scene-content {
