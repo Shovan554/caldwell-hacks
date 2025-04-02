@@ -285,7 +285,7 @@ canvas {
 /* Third Scene Content */
 .third-scene-content {
   position: absolute;
-  top: 50px; /* Below the navbar */
+  top: 20px; /* Below the navbar */
  
   color: #FFFFFF;
   z-index: 10;
@@ -309,7 +309,7 @@ canvas {
   font-family: 'Pixel', sans-serif;
   font-size: 80px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 
   width: 100%;
   margin-left: -200px;
@@ -745,7 +745,29 @@ canvas {
   
 }
 
+@media (max-width:1770px){
+  .themes-title {
+    font-size: 20px; /* Reduced title size */
+    margin-bottom: 10px;
+  }
 
+  .theme-box {
+    width: 30%; 
+    margin: 5px auto;
+    margin-bottom: 10px;
+    padding: 15px;
+    min-width:150px;
+  }
+
+  .theme-title {
+    font-size: 19px; /* Smaller font size */
+    margin-bottom: 5px;
+  }
+
+  .theme-description {
+    font-size: 14px; }
+
+}
 
 
 @media (max-width:1520px) {
