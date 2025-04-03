@@ -138,37 +138,37 @@ document.querySelectorAll('.navbar a').forEach((link) => {
   });
 });
 
-// 🟡 FAQ Hover + Scroll Behavior
-let isHoveringFAQ = false;
-const faqContainer = document.querySelector('.faq-container');
+// 🟡 Itinerary Hover + Scroll Behavior
+let isHoveringItinerary = false;
+const itineraryContainer = document.querySelector('.itinerary-container');
 
-faqContainer.addEventListener('mouseenter', () => {
-  isHoveringFAQ = true;
+itineraryContainer.addEventListener('mouseenter', () => {
+  isHoveringItinerary = true;
 });
 
-faqContainer.addEventListener('mouseleave', () => {
-  isHoveringFAQ = false;
+itineraryContainer.addEventListener('mouseleave', () => {
+  isHoveringItinerary = false;
 });
 
-// 🟢 Scroll Inside FAQ Container
-faqContainer.addEventListener('wheel', (event) => {
-  if (currentScene === 5) {
+// 🟢 Scroll Inside Itinerary Container
+itineraryContainer.addEventListener('wheel', (event) => {
+  if (window.innerWidth <= 1000 && currentScene === 3) {  // Assuming itinerary is scene 3
     const delta = event.deltaY;
-    if (faqContainer.scrollHeight > faqContainer.clientHeight) {
+    if (itineraryContainer.scrollHeight > itineraryContainer.clientHeight) {
       event.preventDefault();
-      faqContainer.scrollTop += delta;
+      itineraryContainer.scrollTop += delta;
     }
   }
 }, { passive: false });
 
-// 🔵 Scroll Scenes Only If Not Hovering FAQ
+// 🔵 Modify existing scroll event listener
 window.addEventListener('wheel', (event) => {
   if (isTransitioning) return;
 
-  if (currentScene === 5 && isHoveringFAQ) return;
+  // Add check for itinerary hover
+  if (currentScene === 3 && isHoveringItinerary && window.innerWidth <= 1000) return;
 
-  event.preventDefault();
-
+  // Your existing scroll logic
   if (event.deltaY > 0 && currentScene < scenes.length - 1) {
     currentScene++;
     transitionToScene(scenes[currentScene]);
