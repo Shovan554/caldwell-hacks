@@ -89,7 +89,7 @@ canvas {
 .logo-animation {
   display: none;
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -121,9 +121,10 @@ canvas {
 .logo-img {
   width: 1400px;
   height: auto;
-  margin-top: -200px;
+  margin-top: ;
   opacity: 1;
   animation: fadeIn 1s ease-out forwards;
+  margin-bottom:20px;
 }
 
 .register-button {
@@ -843,10 +844,7 @@ canvas {
   }
 
   /* Logo adjustments */
-  .logo-img {
-    width: 1000px;
-    margin-top: -150px;
-  }
+  
 }
 
 @media (max-width: 768px) {
