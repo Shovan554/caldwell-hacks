@@ -112,7 +112,7 @@ function updateSceneVisibility() {
   seventhSceneContent.style.display = currentScene === 6 ? "block" : "none";
 }
 
-// Smoothly step through scenes to reach a target index
+// Incremental smooth transition (used for wheel scroll events)
 function smoothTransitionToTarget(targetIndex) {
   const stepThroughScenes = () => {
     if (currentScene < targetIndex) {
@@ -142,13 +142,22 @@ function updateActiveNavLink(targetIndex) {
   });
 }
 
-// Navigation click event listeners
+// For navbar clicks we want a direct jump without stepping through intermediate scenes.
+function jumpToScene(targetIndex) {
+  if (targetIndex < 0 || targetIndex >= scenes.length) return;
+  updateActiveNavLink(targetIndex);
+  currentScene = targetIndex;
+  updateSceneVisibility();
+  // Animate directly to the target scene (non-fast transition)
+  transitionToScene(scenes[targetIndex]);
+}
+
+// Navigation click event listener using direct jump
 document.querySelectorAll('.navbar a').forEach((link) => {
   link.addEventListener('click', (event) => {
     event.preventDefault();
     const targetIndex = parseInt(link.getAttribute('data-target'));
-    updateActiveNavLink(targetIndex);
-    smoothTransitionToTarget(targetIndex);
+    jumpToScene(targetIndex);
   });
 });
 
@@ -164,7 +173,7 @@ itineraryContainer.addEventListener('mouseleave', () => {
   isHoveringItinerary = false;
 });
 
-// 🟢 Scroll Inside Itinerary Container (assuming itinerary is scene 3)
+// 🟢 Scroll inside Itinerary Container (assuming itinerary is scene 3)
 itineraryContainer.addEventListener('wheel', (event) => {
   if (window.innerWidth <= 1000 && currentScene === 3) {
     const delta = event.deltaY;
@@ -195,11 +204,11 @@ faqContainer.addEventListener('wheel', (event) => {
   }
 }, { passive: false });
 
-// 🔵 Global scroll event listener for scene transitions
+// 🔵 Global scroll event listener for scene transitions (one scene at a time)
 window.addEventListener('wheel', (event) => {
   if (isTransitioning) return;
 
-  // Prevent scene transitions when hovering over FAQ or itinerary (in mobile mode for itinerary)
+  // Prevent scene transitions when hovering over FAQ or itinerary (on mobile for itinerary)
   if (isHoveringFaq) return;
   if (currentScene === 3 && isHoveringItinerary && window.innerWidth <= 1000) return;
 
@@ -245,25 +254,4 @@ const navbarMenu = document.getElementById('navbarMenu');
 
 hamburger.addEventListener('click', () => {
   navbarMenu.classList.toggle('show');
-});
-
-// Jump directly to a scene (for navigation)
-function jumpToScene(targetIndex) {
-  if (targetIndex < 0 || targetIndex >= scenes.length) return;
-
-  const targetScene = scenes[targetIndex];
-  camera.position.set(targetScene.position.x, targetScene.position.y, targetScene.position.z);
-  camera.rotation.set(targetScene.rotation.x, targetScene.rotation.y, targetScene.rotation.z);
-
-  currentScene = targetIndex;
-  updateSceneVisibility();
-  updateActiveNavLink(targetIndex);
-}
-
-document.querySelectorAll('.navbar a').forEach((link) => {
-  link.addEventListener('click', (event) => {
-    event.preventDefault();
-    const targetIndex = parseInt(link.getAttribute('data-target'));
-    jumpToScene(targetIndex);
-  });
 });
