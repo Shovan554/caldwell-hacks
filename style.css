@@ -319,6 +319,9 @@ canvas {
   font-weight: bold;
   margin-bottom: 20px;
   text-align: center;
+  opacity: 0; /* Initially hidden */
+  transform: translateX(-100%); /* Initially off-screen */
+  animation: slideInLeft 1.9s ease-out forwards;
 }
 
 .itinerary-container {
@@ -327,7 +330,11 @@ canvas {
   gap: 40px;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto; /* Centers the container */
+  margin: 0 auto;
+  opacity: 0; /* Initially hidden */
+  transform: translateX(100%); /* Initially off-screen */
+  animation: slideInRight 1.9s ease-out forwards;
+  animation-delay: 0.3s;
 }
 
 .day-schedule {

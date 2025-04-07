@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import gsap from 'gsap';
 
+// Get HTML elements
 const canvas = document.getElementById('three-canvas');
 const logoAnimation = document.getElementById('logoAnimation');
 const secondSceneContent = document.getElementById('secondSceneContent'); 
@@ -10,8 +11,11 @@ const fourthSceneContent = document.getElementById('fourthSceneContent');
 const fifthSceneContent = document.getElementById('fifthSceneContent');
 const sixthSceneContent = document.getElementById('sixthSceneContent');
 const seventhSceneContent = document.getElementById('seventhSceneContent');
+
+// Create the Three.js scene
 const scene = new THREE.Scene();
 
+// Define scene positions and rotations
 const scenes = [
   { position: { x: -30.6711, y: -130.928, z: 40.7944 }, rotation: { x: 1.5762, y: -0.0045, z: 2.4401 } },
   { position: { x: 6.6714, y: 23.928, z: 20.2791 }, rotation: { x: -0.8466, y: 0.2146, z: 0.2363 } },
@@ -22,6 +26,7 @@ const scenes = [
   { position: { x: 14.8131, y: 27.0571, z: -10.8962 }, rotation: { x: -1.9669, y: 0.4830, z: 2.3038 } }
 ];
 
+// Set up camera and renderer
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -29,6 +34,7 @@ renderer.setPixelRatio(window.devicePixelRatio);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
+// Lights
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
 scene.add(ambientLight);
 
@@ -41,6 +47,7 @@ const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
 directionalLight2.position.set(-5, -10, -7.5);
 scene.add(directionalLight2);
 
+// Load 3D model
 const loader = new GLTFLoader();
 loader.load('/3Dmodels/wanderers.glb', (gltf) => {
   const model = gltf.scene;
@@ -54,12 +61,14 @@ loader.load('/3Dmodels/wanderers.glb', (gltf) => {
   scene.add(model);
 }, undefined, (error) => console.error('An error occurred while loading the model:', error));
 
+// Set initial scene parameters
 let currentScene = 0;
 let isTransitioning = false;
 const initialScene = scenes[0];
 camera.position.set(initialScene.position.x, initialScene.position.y, initialScene.position.z);
 camera.rotation.set(initialScene.rotation.x, initialScene.rotation.y, initialScene.rotation.z);
 
+// Hide all scene-specific content except the first one
 seventhSceneContent.style.display = "none";
 sixthSceneContent.style.display = "none";
 fifthSceneContent.style.display = "none";
@@ -68,6 +77,7 @@ thirdSceneContent.style.display = "none";
 secondSceneContent.style.display = "none";
 logoAnimation.style.display = "block";
 
+// Transition function for smooth camera movement
 function transitionToScene(targetScene, fastTransition = false) {
   if (isTransitioning) return;
   isTransitioning = true;
@@ -91,6 +101,7 @@ function transitionToScene(targetScene, fastTransition = false) {
   });
 }
 
+// Update scene content visibility based on the current scene
 function updateSceneVisibility() {
   logoAnimation.style.display = currentScene === 0 ? "block" : "none";
   secondSceneContent.style.display = currentScene === 1 ? "block" : "none";
@@ -101,6 +112,7 @@ function updateSceneVisibility() {
   seventhSceneContent.style.display = currentScene === 6 ? "block" : "none";
 }
 
+// Smoothly step through scenes to reach a target index
 function smoothTransitionToTarget(targetIndex) {
   const stepThroughScenes = () => {
     if (currentScene < targetIndex) {
@@ -117,6 +129,7 @@ function smoothTransitionToTarget(targetIndex) {
   stepThroughScenes();
 }
 
+// Update navigation link states
 function updateActiveNavLink(targetIndex) {
   const navLinks = document.querySelectorAll('.navbar a');
   navLinks.forEach((link) => {
@@ -129,6 +142,7 @@ function updateActiveNavLink(targetIndex) {
   });
 }
 
+// Navigation click event listeners
 document.querySelectorAll('.navbar a').forEach((link) => {
   link.addEventListener('click', (event) => {
     event.preventDefault();
@@ -150,9 +164,9 @@ itineraryContainer.addEventListener('mouseleave', () => {
   isHoveringItinerary = false;
 });
 
-// 🟢 Scroll Inside Itinerary Container
+// 🟢 Scroll Inside Itinerary Container (assuming itinerary is scene 3)
 itineraryContainer.addEventListener('wheel', (event) => {
-  if (window.innerWidth <= 1000 && currentScene === 3) {  // Assuming itinerary is scene 3
+  if (window.innerWidth <= 1000 && currentScene === 3) {
     const delta = event.deltaY;
     if (itineraryContainer.scrollHeight > itineraryContainer.clientHeight) {
       event.preventDefault();
@@ -161,14 +175,34 @@ itineraryContainer.addEventListener('wheel', (event) => {
   }
 }, { passive: false });
 
-// 🔵 Modify existing scroll event listener
+// 🟠 FAQ Hover + Scroll Behavior
+let isHoveringFaq = false;
+const faqContainer = document.querySelector('.faq-container'); // Ensure your FAQ box uses this class
+
+faqContainer.addEventListener('mouseenter', () => {
+  isHoveringFaq = true;
+});
+
+faqContainer.addEventListener('mouseleave', () => {
+  isHoveringFaq = false;
+});
+
+// Scroll inside FAQ container
+faqContainer.addEventListener('wheel', (event) => {
+  if (faqContainer.scrollHeight > faqContainer.clientHeight) {
+    event.preventDefault();
+    faqContainer.scrollTop += event.deltaY;
+  }
+}, { passive: false });
+
+// 🔵 Global scroll event listener for scene transitions
 window.addEventListener('wheel', (event) => {
   if (isTransitioning) return;
 
-  // Add check for itinerary hover
+  // Prevent scene transitions when hovering over FAQ or itinerary (in mobile mode for itinerary)
+  if (isHoveringFaq) return;
   if (currentScene === 3 && isHoveringItinerary && window.innerWidth <= 1000) return;
 
-  // Your existing scroll logic
   if (event.deltaY > 0 && currentScene < scenes.length - 1) {
     currentScene++;
     transitionToScene(scenes[currentScene]);
@@ -182,18 +216,21 @@ window.addEventListener('wheel', (event) => {
   }
 }, { passive: false });
 
+// Animation loop
 function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
 }
 animate();
 
+// Handle window resizing
 window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 });
 
+// Mobile device check
 function isMobileDevice() {
   return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 }
@@ -202,6 +239,7 @@ if (isMobileDevice()) {
   document.getElementById('mobileWarning').style.display = 'flex';
 }
 
+// Hamburger menu toggle
 const hamburger = document.getElementById('hamburger');
 const navbarMenu = document.getElementById('navbarMenu');
 
@@ -209,6 +247,7 @@ hamburger.addEventListener('click', () => {
   navbarMenu.classList.toggle('show');
 });
 
+// Jump directly to a scene (for navigation)
 function jumpToScene(targetIndex) {
   if (targetIndex < 0 || targetIndex >= scenes.length) return;
 
@@ -217,7 +256,6 @@ function jumpToScene(targetIndex) {
   camera.rotation.set(targetScene.rotation.x, targetScene.rotation.y, targetScene.rotation.z);
 
   currentScene = targetIndex;
-
   updateSceneVisibility();
   updateActiveNavLink(targetIndex);
 }
